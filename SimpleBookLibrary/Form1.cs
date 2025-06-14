@@ -98,6 +98,27 @@ namespace SimpleBookLibrary
         {
 
         }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewBooks.CurrentRow != null)
+            {
+                int index = dataGridViewBooks.CurrentRow.Index;
+                if (index >= 0 && index < books.Count)
+                {
+                    var result = MessageBox.Show("Ви впевнені, що хочете видалити цю книгу?", "Підтвердження", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        books.RemoveAt(index);
+                        UpdateGrid();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, виберіть книгу для видалення.");
+            }
+        }
     }
     [Serializable]
     public class Book
